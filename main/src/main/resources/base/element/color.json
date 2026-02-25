@@ -1,0 +1,32 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "login_highlight",
+      "value": "#38B6FF"
+    },
+    {
+      "name": "login_button_bg",
+      "value": "#5538B6FF"
+    },
+    {
+      "name": "login_input_bg",
+      "value": "#26FFFFFF"
+    },
+    {
+      "name": "login_blur_layer",
+      "value": "#33FFFFFF"
+    },
+    {
+      "name": "login_card_bg",
+      "value": "#22000000"
+    },
+    {
+      "name": "login_text_primary",
+      "value": "#FFFFFF"
+    }
+  ]
+}
