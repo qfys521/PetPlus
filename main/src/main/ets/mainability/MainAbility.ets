@@ -18,6 +18,7 @@ export default class MainAbility extends UIAbility {
     console.debug("初始化 harmony-utils 中...")
     try{
       AppUtil.init(this.context)
+      LogUtil.setTag("PetPlus")
     }catch (err){
       console.error("初始化 harmony-utils 失败..." , err)
       // 退出应用

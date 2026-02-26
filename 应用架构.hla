@@ -1,0 +1,35 @@
+graph LR
+    Root[PetCommand Pro 核心] --- Module1[1. 智能看板 Dashboard]
+    Root --- Module2[2. 精密健康 Health]
+    Root --- Module3[3. 成员资产 Asset]
+    Root --- Module4[4. 智库助手 Intel]
+
+    %% 看板模块
+    Module1 --- M1_1[实时环境监控 - 传感器流]
+    Module1 --- M1_2[今日健康闭环 - 进食/水/动]
+    Module1 --- M1_3[快捷中心 - 远程指令/PiP小窗]
+    Module1 --- M1_4[智能推流 - 预警与建议卡片]
+
+    %% 健康模块
+    Module2 --- M2_1[AI 喂养 - 动态配比/算法推荐]
+    Module2 --- M2_2[多维趋势图 - PC交叉对比分析]
+    Module2 --- M2_3[医疗金库 - OCR病历/疫苗/化验]
+    Module2 --- M2_4[专业报告 - PDF一键导出]
+
+    %% 资产模块
+    Module3 --- M3_1[数字身份证 - 基因/档案/保险]
+    Module3 --- M3_2[家庭共享 - 权限矩阵管理]
+    Module3 --- M3_3[设备工作站 - 固件/耗材/网络日志]
+    Module3 --- M3_4[隐私中心 - GDPR脱敏/云同步]
+
+    %% 智库模块
+    Module4 --- M4_1[AI 兽医助手 - 多模态问答/图片识别]
+    Module4 --- M4_2[科学百科 - 结构化搜索/品种指南]
+    Module4 --- M4_3[SOS 急救 - 离线视频/24H医院地图]
+    Module4 --- M4_4[社区互动 - 专家咨询/经验分享]
+
+    style Root fill:#1A73E8,color:#fff,stroke-width:2px
+    style Module1 fill:#E8F0FE,stroke:#1A73E8
+    style Module2 fill:#E6F4EA,stroke:#1E8E3E
+    style Module3 fill:#FEF7E0,stroke:#F9AB00
+    style Module4 fill:#FCE8E6,stroke:#D93025
