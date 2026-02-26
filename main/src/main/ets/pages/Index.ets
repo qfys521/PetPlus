@@ -1,4 +1,6 @@
-import { ToastUtil } from '@pura/harmony-utils';
+import { LogUtil, ToastUtil } from '@pura/harmony-utils';
+import { petsUserLogin } from '../api/services';
+import { ApiError } from '../api/types';
 
 @Entry
 @Component
@@ -6,8 +8,6 @@ struct Index {
   @State username: string = "";
   @State password: string = "";
   @State isSelect: boolean = false;
-  @State isReadUserAgreement: boolean = false;
-  @State isReadPrivacyPolicy: boolean = false;
 
   build() {
     Stack() {
@@ -101,12 +101,7 @@ struct Index {
                 return;
               }
 
-              if (!this.isReadUserAgreement || !this.isReadPrivacyPolicy) {
-                ToastUtil.showToast("请先阅读并同意用户协议和隐私政策！");
-                return;
-              }
-
-              // 登录逻辑...
+              this.login()
             })
 
           // 注册入口
@@ -119,6 +114,15 @@ struct Index {
               .fontSize(14)
               .fontColor($r('app.color.login_highlight'))
               .fontWeight(FontWeight.Bold)
+              .onClick(() =>{
+                this.getUIContext().getRouter().pushUrl({
+                  url: "pages/register"
+                }
+                ).catch((err:Error) => {
+                  ToastUtil.showToast("[系统错误] 无法跳转至注册页面！")
+                  LogUtil.error(`[跳转] 失败 | 错误:${"\n"}${JSON.stringify(err , null, 4)}`)
+                })
+              })
           }
           .justifyContent(FlexAlign.Center)
           .margin({ top: 5 })
@@ -155,14 +159,12 @@ struct Index {
                 primaryButton: {
                   value: "取消",
                   action: () => {
-                    this.isReadUserAgreement = false;
+                    this.isSelect = false;
                   }
                 },
                 secondaryButton: {
                   value: "同意",
-                  action: () => {
-                    this.isReadUserAgreement = true;
-                  }
+                  action: () => {}
                 }
               })
             })
@@ -182,14 +184,12 @@ struct Index {
                 primaryButton: {
                   value: "取消",
                   action: () => {
-                    this.isReadPrivacyPolicy = false;
+                    this.isSelect = false;
                   }
                 },
                 secondaryButton: {
                   value: "同意",
-                  action: () => {
-                    this.isReadPrivacyPolicy = true;
-                  }
+                  action: () => {}
                 }
               })
             })
@@ -212,4 +212,17 @@ struct Index {
       .alignItems(HorizontalAlign.Center)
     }
   }
+
+  async login() {
+    await petsUserLogin({
+      userName: this.username.trim(),
+      psd: this.password.trim()
+    }).then(res => {
+      LogUtil.info(`[登录] 成功 | 响应:${"\n"}${JSON.stringify(res , null, 4)}`);
+    }).catch((err:ApiError) =>{
+      LogUtil.error(`[登录] 失败 | 错误:${"\n"}${JSON.stringify(err , null, 4)}`)
+    });
+  }
+
+
 }
