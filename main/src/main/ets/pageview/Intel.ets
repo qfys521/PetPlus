@@ -1,9 +1,9 @@
 @Component
-export struct  Intel {
+export struct  Archival {
   build() {
 
     Column(){
-      Text("Intel")
+      Text("Archival")
     }
     .alignItems(HorizontalAlign.Center)
     .justifyContent(FlexAlign.Center)

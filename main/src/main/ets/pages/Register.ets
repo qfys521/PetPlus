@@ -12,7 +12,7 @@ struct Register {
   @State email: string = "";
   @State phone: string = "";
   @State isAgree: boolean = false;
-  // 1. 增加防重点击/加载状态
+
   @State isRegistering: boolean = false;
 
   build() {
@@ -42,7 +42,7 @@ struct Register {
           this.passwordItem("请输入密码", this.password, v => this.password = v)
           this.passwordItem("请确认密码", this.confirmPassword, v => this.confirmPassword = v)
 
-          // 2. 根据状态改变文字，并设置 enabled 属性
+
           Button(this.isRegistering ? "注册中..." : "立即注册")
             .width('100%')
             .height(50)
@@ -52,7 +52,7 @@ struct Register {
             .fontSize(18)
             .fontWeight(FontWeight.Bold)
             .margin({ top: 10 })
-            .enabled(!this.isRegistering) // 防止重复点击
+            .enabled(!this.isRegistering)
             .opacity(this.isRegistering ? 0.7 : 1)
             .onClick(() => this.register())
 
@@ -109,7 +109,7 @@ struct Register {
 
   @Builder
   private inputItem(icon: string, placeholder: string, value: string, onChange: (v: string) => void) {
-    // 你的原有UI代码，省略...
+
     Row() {
       SymbolGlyph($r(`sys.symbol.${icon}`))
         .fontSize(20)
@@ -133,7 +133,7 @@ struct Register {
 
   @Builder
   private passwordItem(placeholder: string, value: string, onChange: (v: string) => void) {
-    // 你的原有UI代码，省略...
+
     Row() {
       SymbolGlyph($r('sys.symbol.lock'))
         .fontSize(20)
@@ -172,7 +172,7 @@ struct Register {
       return;
     }
 
-    // 3. 拦截判断
+
     if (this.isRegistering) return;
     this.isRegistering = true;
 
@@ -186,7 +186,7 @@ struct Register {
       .then(res => {
         ToastUtil.showToast("注册成功");
         LogUtil.info(`[注册] 成功`);
-        // 可以考虑注册成功后自动返回登录页：
+
         setTimeout(() => this.getUIContext().getRouter().back(), 1500);
       })
       .catch((err: ApiError) => {
@@ -194,7 +194,7 @@ struct Register {
         LogUtil.error(`[注册] 失败:${"\n"}${JSON.stringify(err, null, 4)}`);
       })
       .finally(() => {
-        // 4. 重置状态
+
         this.isRegistering = false;
       });
   }
