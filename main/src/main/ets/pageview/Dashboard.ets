@@ -224,12 +224,13 @@ export struct Dashboard {
   }
 
 
-  private async handleQuickFeed() {
+
+  private async handleQuickFeed(pet?: PetBean) {
     if (!this.userKey) {
       ToastUtil.showToast("身份验证失效，无法投喂");
       return;
     }
-    if (this.petList.length === 0) {
+    if (this.petList.length === 0 && !pet) {
       ToastUtil.showToast("未获取到宠物信息，无法投喂");
       return;
     }
@@ -237,15 +238,17 @@ export struct Dashboard {
 
     this.isFeeding = true;
     try {
+      const targetPetId = pet?.id?.toString() || this.petList[0]?.id?.toString() || "1";
       const feedParams: PutFeedingRequest = {
         key: this.userKey,
-        petId: this.petList[0]?.id?.toString() || "1",
+        petId: targetPetId,
         plannedAmount: "150",
         deviceId: "1"
       };
 
       await putFeeding(feedParams);
-      ToastUtil.showToast("🍗 投喂指令已发送，数据同步可能会有5分钟延迟！");
+      const petName = pet?.petName || this.petList[0]?.petName || "";
+      ToastUtil.showToast(`🍗 给 ${petName} 投喂的指令已发送，数据同步可能会有5分钟延迟！`);
       this.feedRecordList.push({} as FeedingRecordBean);
     } catch (err) {
       ToastUtil.showToast("🍗 投喂失败，请稍后再试");
@@ -425,25 +428,58 @@ export struct Dashboard {
 
   @Builder
   private QuickFeedCard() {
-    Row() {
-      Column({ space: 4 }) {
-        Text("快捷设备").fontSize(14).fontColor('#666666').fontWeight(FontWeight.Medium)
-        Text(this.petList.length > 0 ? `给 ${this.petList[0].petName} 加餐` : "智能喂食器")
-          .fontSize(18).fontWeight(FontWeight.Bold).fontColor(Color.Black)
-      }
-      .layoutWeight(1)
-      .alignItems(HorizontalAlign.Start)
+    Column({ space: 12 }) {
+      Text("快捷设备")
+        .fontSize(14)
+        .fontColor('#666666')
+        .fontWeight(FontWeight.Medium)
+        .width('100%')
 
-      Button(this.isFeeding ? "投喂中" : "一键开饭")
-        .height(45)
-        .backgroundColor(this.isFeeding ? 'rgba(255, 165, 0, 0.5)' : '#FFB11B')
-        .fontColor(Color.White)
-        .fontWeight(FontWeight.Bold)
-        .borderRadius(22)
-        .enabled(!this.isFeeding)
-        .onClick(() => { this.handleQuickFeed(); })
+      if (this.petList.length > 0) {
+        ForEach(this.petList, (pet: PetBean, index: number) => {
+          Row() {
+            Text(`给 ${pet.petName} 加餐`)
+              .fontSize(18)
+              .fontWeight(FontWeight.Bold)
+              .fontColor(Color.Black)
+              .layoutWeight(1)
+
+            Button(this.isFeeding ? "投喂中" : "一键喂食")
+              .height(40)
+              .backgroundColor(this.isFeeding ? 'rgba(255, 165, 0, 0.5)' : '#FFB11B')
+              .fontColor(Color.White)
+              .fontWeight(FontWeight.Bold)
+              .borderRadius(20)
+              .enabled(!this.isFeeding)
+              .onClick(() => { this.handleQuickFeed(pet); })
+          }
+          .width('100%')
+
+          if (index !== this.petList.length - 1) {
+            Divider().color('#E5E5E5').margin({ top: 4, bottom: 4 })
+          }
+        })
+      } else {
+        Row() {
+          Text("智能喂食器")
+            .fontSize(18)
+            .fontWeight(FontWeight.Bold)
+            .fontColor(Color.Black)
+            .layoutWeight(1)
+
+          Button(this.isFeeding ? "投喂中" : "一键喂食")
+            .height(40)
+            .backgroundColor(this.isFeeding ? 'rgba(255, 165, 0, 0.5)' : '#FFB11B')
+            .fontColor(Color.White)
+            .fontWeight(FontWeight.Bold)
+            .borderRadius(20)
+            .enabled(!this.isFeeding)
+            .onClick(() => { this.handleQuickFeed(); })
+        }
+        .width('100%')
+      }
     }
-    .rowGlassCardStyle()
+    .colGlassCardStyle()
   }
 
 
