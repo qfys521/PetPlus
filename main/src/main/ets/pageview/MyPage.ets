@@ -2,13 +2,9 @@ import { LogUtil, PreferencesUtil, ToastUtil } from '@pura/harmony-utils';
 import { UserBean } from '../api/types';
 import { setUserinfo } from '../api/services';
 
-
-
-
 @CustomDialog
 struct EditUserInfoDialog {
   controller?: CustomDialogController
-
 
   @Link editName: string;
   @Link editEmail: string;
@@ -16,7 +12,6 @@ struct EditUserInfoDialog {
   @Link editAddress: string;
   @Link editPass: string;
   @Link isUpdating: boolean;
-
 
   confirmAction: () => void = () => {}
 
@@ -44,7 +39,7 @@ struct EditUserInfoDialog {
             this.controller?.close();
           })
 
-        Button(this.isUpdating ? "保存��..." : "保存修改")
+        Button(this.isUpdating ? "保存..." : "保存修改")
           .layoutWeight(1)
           .height(45)
           .backgroundColor('rgba(255, 255, 255, 0.9)')
@@ -60,8 +55,9 @@ struct EditUserInfoDialog {
       .margin({ top: 15, bottom: 5 })
     }
     .padding(25)
+    // 限制弹窗最大宽度，防止 PC 端拉得过长
+    .constraintSize({ maxWidth: 450 })
     .width('90%')
-
     .backgroundColor('rgba(40, 40, 50, 0.65)')
     .backgroundBlurStyle(BlurStyle.Thick)
     .borderRadius(24)
@@ -90,19 +86,14 @@ struct EditUserInfoDialog {
   }
 }
 
-
-
-
 @Entry
 @Component
 struct MyPage {
-
   @State userName: string = "未登录";
   @State email: string = "未绑定邮箱";
   @State phone: string = "未绑定手机号";
   @State homeAddress: string = "未设置家庭地址";
   @State userKey: string = "";
-
 
   @State editName: string = '';
   @State editEmail: string = '';
@@ -110,7 +101,6 @@ struct MyPage {
   @State editAddress: string = '';
   @State editPass: string = '';
   @State isUpdating: boolean = false;
-
 
   dialogController: CustomDialogController = new CustomDialogController({
     builder: EditUserInfoDialog({
@@ -130,7 +120,6 @@ struct MyPage {
     this.loadUserInfo();
   }
 
-
   private loadUserInfo() {
     try {
       const userInfoStr = PreferencesUtil.getStringSync("user_info", "");
@@ -147,24 +136,20 @@ struct MyPage {
     }
   }
 
-
   private openEditDialog() {
     if (!this.userKey) {
       ToastUtil.showToast("用户认证失效，请重新登录");
       return;
     }
 
-
     this.editName = this.userName === "未登录" ? "" : this.userName;
     this.editEmail = this.email === "未绑定邮箱" ? "" : this.email;
     this.editPhone = this.phone === "未绑定手机号" ? "" : this.phone;
     this.editAddress = this.homeAddress === "未设置家庭地址" ? "" : this.homeAddress;
-
     this.editPass = PreferencesUtil.getStringSync("login_password", "");
 
     this.dialogController.open();
   }
-
 
   private async handleUpdateUserInfo() {
     if (!this.editName.trim() || !this.editPass.trim()) {
@@ -174,7 +159,6 @@ struct MyPage {
 
     this.isUpdating = true;
     try {
-
       await setUserinfo({
         userName: this.editName.trim(),
         password: this.editPass.trim(),
@@ -187,12 +171,10 @@ struct MyPage {
 
       ToastUtil.showToast("信息修改成功");
 
-
       this.userName = this.editName.trim();
       this.email = this.editEmail.trim() || "未绑定邮箱";
       this.phone = this.editPhone.trim() || "未绑定手机号";
       this.homeAddress = this.editAddress.trim() || "未设置家庭地址";
-
 
       const userInfoStr = PreferencesUtil.getStringSync("user_info", "{}");
       const userInfo: UserBean = JSON.parse(userInfoStr);
@@ -205,9 +187,7 @@ struct MyPage {
       PreferencesUtil.putSync("login_username", this.userName);
       PreferencesUtil.putSync("login_password", this.editPass.trim());
 
-
       this.dialogController.close();
-
     } catch (err) {
       LogUtil.error(`修改信息失败: ${JSON.stringify(err)}`);
       ToastUtil.showToast(`修改失败: ${err.message || '网络异常'}`);
@@ -218,12 +198,11 @@ struct MyPage {
 
   build() {
     Stack() {
-
+      // 1. 背景层
       Image($r('app.media.bg1'))
         .width('100%')
         .height('100%')
         .objectFit(ImageFit.Cover)
-
 
       Column()
         .width('100%')
@@ -231,8 +210,9 @@ struct MyPage {
         .backgroundColor($r('app.color.login_blur_layer'))
         .backdropBlur(25)
 
-
+      // 2. 主内容区
       Column() {
+        // 顶部导航栏 (宽度全屏，不受卡片最大宽度的影响)
         Row() {
           SymbolGlyph($r('sys.symbol.chevron_left'))
             .fontSize(28)
@@ -254,9 +234,11 @@ struct MyPage {
         .padding({ left: 15, right: 15 })
         .margin({ top: 40 })
 
+        // 可滚动的中间内容
         Scroll() {
+          // 这里是关键优化：将内容的 Column 包裹，并设置居中对齐和最大宽度
           Column() {
-
+            // 用户资料卡片
             Row() {
               Image($r('app.media.touxiang2'))
                 .width(70)
@@ -286,7 +268,7 @@ struct MyPage {
                 .fontSize(24)
                 .fontColor(['rgba(255,255,255,0.6)'])
             }
-            .width('90%')
+            .width('100%')
             .padding(20)
             .margin({ top: 15, bottom: 25 })
             .backgroundColor($r('app.color.login_card_bg'))
@@ -294,45 +276,41 @@ struct MyPage {
             .border({ width: 1, color: 'rgba(255,255,255,0.15)' })
             .backdropBlur(15)
             .onClick(() => {
-
               this.openEditDialog();
             })
 
-
+            // 菜单列表卡片
             Column() {
               this.MenuItem('sys.symbol.person_crop_circle_badge_exclamationmark', "修改个人信息", () => {
                 this.openEditDialog();
               })
-
               Divider().color('rgba(255,255,255,0.15)').strokeWidth(1).margin({ left: 50, right: 15 })
 
               this.MenuItem('sys.symbol.gearshape', "应用设置", () => {
                 ToastUtil.showToast("功能开发中...");
               })
-
               Divider().color('rgba(255,255,255,0.15)').strokeWidth(1).margin({ left: 50, right: 15 })
 
               this.MenuItem('sys.symbol.trash', "清除缓存", () => {
                 ToastUtil.showToast("缓存已清除");
               })
-
               Divider().color('rgba(255,255,255,0.15)').strokeWidth(1).margin({ left: 50, right: 15 })
 
               this.MenuItem('sys.symbol.info_circle', "关于 PetPlus宠家", () => {
                 ToastUtil.showToast("当前版本 v1.0.0");
               })
             }
-            .width('90%')
+            .width('100%')
             .backgroundColor($r('app.color.login_card_bg'))
             .borderRadius(20)
             .border({ width: 1, color: 'rgba(255,255,255,0.15)' })
             .backdropBlur(15)
 
+            // 底部占位与按钮
             Blank().layoutWeight(1)
 
-
             Button("退出登录")
-              .width('90%')
+              .width('100%')
               .height(52)
               .backgroundColor('rgba(255, 77, 79, 0.25)')
               .fontColor('#FF6B6B')
@@ -346,9 +324,11 @@ struct MyPage {
                 this.showLogoutDialog();
               })
           }
-          .width('100%')
-          .constraintSize({ minHeight: '100%' })
+          // 限制最大宽度，在 PC 大屏下居中显示，在手机端保持 90%
+          .constraintSize({ maxWidth: 600, minHeight: '100%' })
+          .width('90%')
         }
+        .width('100%')
         .layoutWeight(1)
         .scrollBar(BarState.Off)
       }

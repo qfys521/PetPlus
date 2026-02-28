@@ -1,10 +1,9 @@
 import { DeviceUtil, LogUtil, PreferencesUtil, ToastUtil } from '@pura/harmony-utils';
 import { Dashboard } from '../pageview/Dashboard';
 import { Health } from '../pageview/Health';
-import { Asset } from '../pageview/Asset';
-import { Archival } from '../pageview/Intel';
-import { UIUtils } from '@kit.ArkUI';
 import { UserBean } from '../api/types';
+import { Archival } from '../pageview/Archival';
+import { Intel } from '../pageview/Intel';
 
 interface BottomTabItemData {
   icon: Resource;
@@ -31,7 +30,7 @@ struct AppPage {
   private readonly bottomItems: BottomTabItemData[] = [
     { icon: $r('sys.symbol.house'), title: '首页', index: 0 },
     { icon: $r('sys.symbol.heart'), title: '健康', index: 1 },
-    { icon: $r('sys.symbol.creditcard'), title: '资产', index: 2 },
+    { icon: $r('sys.symbol.creditcard'), title: '管理', index: 2 },
     { icon: $r('sys.symbol.book'), title: '智库', index: 3 }
   ];
 
@@ -145,8 +144,8 @@ struct AppPage {
     }) {
       TabContent() { Dashboard() }
       TabContent() { Health() }
-      TabContent() { Asset() }
       TabContent() { Archival() }
+      TabContent() { Intel() }
     }
     .animationDuration(300)
     .onChange((index: number) => {
