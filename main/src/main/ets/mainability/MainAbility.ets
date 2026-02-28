@@ -21,7 +21,7 @@ export default class MainAbility extends UIAbility {
       LogUtil.setTag("PetPlus")
     }catch (err){
       console.error("初始化 harmony-utils 失败..." , err)
-      // 退出应用
+
       App.terminate()
     }
 
@@ -41,8 +41,33 @@ export default class MainAbility extends UIAbility {
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    // Main window is created, set main page for this ability
+
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+
+    try {
+
+      let windowClass = windowStage.getMainWindowSync();
+
+
+      windowClass.setWindowLayoutFullScreen(true);
+
+
+      let sysBarProps: window.SystemBarProperties = {
+        statusBarColor: '#00000000',
+        navigationBarColor: '#00000000',
+        statusBarContentColor: '#FFFFFF',
+        navigationBarContentColor: '#FFFFFF'
+      };
+
+
+      windowClass.setWindowSystemBarProperties(sysBarProps);
+
+      hilog.info(DOMAIN, 'testTag', 'Succeeded in setting the window layout to full-screen.');
+    } catch (err) {
+      hilog.error(DOMAIN, 'testTag', 'Failed to set the window layout to full-screen. Cause: %{public}s', JSON.stringify(err));
+    }
+
 
     windowStage.loadContent('pages/Index', (err) => {
       if (err.code) {
@@ -54,17 +79,17 @@ export default class MainAbility extends UIAbility {
   }
 
   onWindowStageDestroy(): void {
-    // Main window is destroyed, release UI related resources
+
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
   }
 
   onForeground(): void {
-    // Ability has brought to foreground
+
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onForeground');
   }
 
   onBackground(): void {
-    // Ability has back to background
+
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
 }

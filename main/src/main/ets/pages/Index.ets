@@ -8,7 +8,7 @@ struct Index {
   @State username: string = "";
   @State password: string = "";
   @State isSelect: boolean = false;
-  // 1. 增加防重点击/加载状态
+
   @State isLoggingIn: boolean = false;
 
   aboutToAppear() {
@@ -87,7 +87,7 @@ struct Index {
               .onChange(v => this.password = v)
           }
 
-          // 2. 根据状态改变文字，并设置 enabled 属性
+
           Button(this.isLoggingIn ? "登录中..." : "登录")
             .width('100%')
             .constraintSize({
@@ -101,8 +101,8 @@ struct Index {
             .fontColor(Color.White)
             .fontSize(18)
             .fontWeight(FontWeight.Bold)
-            .enabled(!this.isLoggingIn) // 防止重复点击
-            .opacity(this.isLoggingIn ? 0.7 : 1) // 登录中降低透明度给个视觉反馈
+            .enabled(!this.isLoggingIn)
+            .opacity(this.isLoggingIn ? 0.7 : 1)
             .onClick(() => {
               if (!this.isSelect) {
                 ToastUtil.showToast("请先阅读并同意用户协议和隐私政策！");
@@ -159,7 +159,7 @@ struct Index {
             .fontSize(12)
             .fontColor($r('app.color.login_highlight'))
             .onClick(() => {
-              // 省略你的弹窗逻辑...
+
             })
 
           Text(" 和 ")
@@ -170,7 +170,7 @@ struct Index {
             .fontSize(12)
             .fontColor($r('app.color.login_highlight'))
             .onClick(() => {
-              // 省略你的弹窗逻辑...
+
             })
         }
         .margin({ top: 30 })
@@ -190,7 +190,7 @@ struct Index {
   }
 
   async login() {
-    // 3. 拦截判断：如果已经在登录中，直接返回
+
     if (this.isLoggingIn) return;
     this.isLoggingIn = true;
 
@@ -213,7 +213,7 @@ struct Index {
       PreferencesUtil.deleteSync("login_username");
       PreferencesUtil.deleteSync("login_password");
     }).finally(() => {
-      // 4. 不论成功还是失败，都要恢复状态（如果页面不销毁的话）
+
       this.isLoggingIn = false;
     });
   }

@@ -1,9 +1,10 @@
-import { DeviceUtil, LogUtil } from '@pura/harmony-utils';
+import { DeviceUtil, LogUtil, PreferencesUtil, ToastUtil } from '@pura/harmony-utils';
 import { Dashboard } from '../pageview/Dashboard';
 import { Health } from '../pageview/Health';
 import { Asset } from '../pageview/Asset';
-import { Intel } from '../pageview/Intel';
+import { Archival } from '../pageview/Intel';
 import { UIUtils } from '@kit.ArkUI';
+import { UserBean } from '../api/types';
 
 interface BottomTabItemData {
   icon: Resource;
@@ -15,6 +16,9 @@ interface BottomTabItemData {
 @Component
 struct AppPage {
   @State currentIndex: number = 0;
+
+  @State userName: string = "用户";
+
   private tabController: TabsController = new TabsController();
 
   private readonly pageTitleMap: Map<number, string> = new Map([
@@ -33,25 +37,51 @@ struct AppPage {
 
   aboutToAppear(): void {
     LogUtil.info('[AppPage] 页面即将显示');
+    this.loadUserInfo();
+  }
+
+
+  private loadUserInfo() {
+    try {
+      const userInfoStr = PreferencesUtil.getStringSync("user_info", "");
+      if (userInfoStr) {
+        const userInfo: UserBean = JSON.parse(userInfoStr);
+        this.userName = userInfo.userName || this.userName;
+      }
+    } catch (e) {
+      LogUtil.error("解析用户信息失败: " + e);
+    }
   }
 
   build() {
-    // 1. 【布局修改】使用 Stack 将底部导航悬浮在页面内容之上
     Stack({ alignContent: Alignment.Bottom }) {
-      // 主内容
+
+      Image($r('app.media.bg2'))
+        .width('100%')
+        .height('100%')
+        .objectFit(ImageFit.Cover)
+
+
+      Column()
+        .width('100%')
+        .height('100%')
+        .backgroundColor('rgba(255, 255, 255, 0.15)')
+        .backdropBlur(30)
+
+
       this.mainContent()
 
-      // 底部导航（悬浮液态玻璃）
+
       this.bottomTabBar()
     }
     .width('100%')
     .height('100%')
-    .backgroundColor($r('app.color.login_blur_layer'))
+    .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])
   }
 
-  // =========================
-  // 主体内容
-  // =========================
+
+
+
   @Builder
   private mainContent() {
     Column() {
@@ -60,38 +90,41 @@ struct AppPage {
     }
     .width('100%')
     .height('100%')
-    // 2. 【细节处理】底部留出 Padding，防止最下方的页面内容被悬浮栏永久遮挡
-    .padding({ left: 16, right: 16, top: 10, bottom: 100 })
+    .padding({ left: 16, right: 16, top: 40, bottom: 100 })
   }
 
-  // =========================
-  // 顶部标题栏
-  // =========================
+
+
+
   @Builder
   private topAppBar() {
     Row() {
       Row() {
-        // 示例：在 AppPage.ets 中点击头像的逻辑
         Image($r('app.media.touxiang2'))
-          .width(40)
-          .height(40)
-          .borderRadius(20)
+          .width(42)
+          .height(42)
+          .borderRadius(21)
+          .border({ width: 1.5, color: Color.White })
           .onClick(() => {
             this.getUIContext().getRouter().pushUrl({
-              url: "pages/MyPage"
+              url: 'pageview/MyPage'
+            }).catch((err: Error) => {
+              ToastUtil.showToast("[系统错误] 无法跳转到设置页面！");
+              LogUtil.error(`[跳转] 失败 | 错误:${"\n"}${JSON.stringify(err, null, 4)}`);
             });
           })
 
         Column() {
           Text("欢迎回来")
             .fontSize(12)
-            .fontColor($r('app.color.login_text_primary'))
-            .opacity(0.8)
+            .fontColor('#666666')
 
-          Text("PetPlus用户")
-            .fontSize(14)
-            .fontColor($r('app.color.login_text_primary'))
-            .fontWeight(FontWeight.Medium)
+
+          Text(this.userName)
+            .fontSize(16)
+            .fontColor(Color.Black)
+            .fontWeight(FontWeight.Bold)
+            .margin({ top: 2 })
         }
         .alignItems(HorizontalAlign.Start)
         .margin({ left: 12 })
@@ -99,12 +132,7 @@ struct AppPage {
       .layoutWeight(1)
       .alignItems(VerticalAlign.Center)
 
-      SymbolGlyph($r('sys.symbol.gearshape'))
-        .fontSize(22)
-        .fontColor([$r('app.color.login_text_primary')])
-        .onClick(() => {
-          LogUtil.info('[AppPage] 点击设置按钮');
-        })
+
     }
     .height(60)
     .padding({ left: 8, right: 8 })
@@ -118,7 +146,7 @@ struct AppPage {
       TabContent() { Dashboard() }
       TabContent() { Health() }
       TabContent() { Asset() }
-      TabContent() { Intel() }
+      TabContent() { Archival() }
     }
     .animationDuration(300)
     .onChange((index: number) => {
@@ -126,13 +154,12 @@ struct AppPage {
     })
     .layoutWeight(1)
     .barPosition(BarPosition.End)
-    // 3. 【核心修复】将默认 TabBar 高度设为 0，彻底解决“幽灵按钮”问题！
     .barHeight(0)
   }
 
-  // =========================
-  // 底部导航栏 (悬浮液态玻璃设计)
-  // =========================
+
+
+
   @Builder
   private bottomTabBar() {
     Row() {
@@ -144,46 +171,41 @@ struct AppPage {
         (item: BottomTabItemData) => item.index.toString()
       )
     }
-    .width('90%') // 缩小宽度，让两侧留白
-    .height(72)   // 稍微改薄一点，更像胶囊
-    .margin({ bottom: 24 }) // 底部悬浮距离
+    .width('90%')
+    .height(72)
+    .margin({ bottom: 34 })
     .justifyContent(FlexAlign.SpaceAround)
     .alignItems(VerticalAlign.Center)
-    // 4. 【材质修改】半透明底色 + 极简背景模糊
-    .backgroundColor('rgba(26, 26, 46, 0.65)') // 保持你原有的深色调，但改为65%透明度
-    .backgroundBlurStyle(BlurStyle.Regular) // 开启毛玻璃效果
-    .borderRadius(36) // 大圆角实现 (二二二二) 形状
+
+    .backgroundColor('rgba(255, 255, 255, 0.45)')
+    .backgroundBlurStyle(BlurStyle.Thin)
+    .borderRadius(36)
+    .border({ width: 1.5, color: 'rgba(255, 255, 255, 0.6)' })
     .shadow({
-      radius: 20,
-      color: 'rgba(0, 0, 0, 0.25)', // 让阴影更柔和一点，凸显玻璃的质感
+      radius: 15,
+      color: 'rgba(0, 0, 0, 0.08)',
       offsetX: 0,
       offsetY: 8
     })
   }
 
-  // =========================
-  // 单个Tab
-  // =========================
+
+
+
   @Builder
   private bottomTabItem(icon: Resource, title: string, index: number) {
     Column({ space: 4 }) {
       SymbolGlyph(icon)
         .fontSize(22)
-        .fontColor(
-          this.currentIndex === index
-            ? [$r('app.color.login_highlight')]
-            : [$r('app.color.login_text_primary')]
-        )
-        .opacity(this.currentIndex === index ? 1 : 0.7)
+
+        .fontColor(this.currentIndex === index ? [Color.Black] : ['#888888'])
+        .fontWeight(this.currentIndex === index ? FontWeight.Bold : FontWeight.Normal)
 
       Text(title)
         .fontSize(11)
-        .fontColor(
-          this.currentIndex === index
-            ? $r('app.color.login_highlight')
-            : $r('app.color.login_text_primary')
-        )
-        .opacity(this.currentIndex === index ? 1 : 0.7)
+
+        .fontColor(this.currentIndex === index ? Color.Black : '#888888')
+        .fontWeight(this.currentIndex === index ? FontWeight.Bold : FontWeight.Normal)
         .maxLines(1)
     }
     .width(60)
@@ -191,12 +213,12 @@ struct AppPage {
     .justifyContent(FlexAlign.Center)
     .alignItems(HorizontalAlign.Center)
     .scale({
-      x: this.currentIndex === index ? 1.1 : 1,
-      y: this.currentIndex === index ? 1.1 : 1
+      x: this.currentIndex === index ? 1.15 : 1,
+      y: this.currentIndex === index ? 1.15 : 1
     })
     .animation({
-      duration: 200,
-      curve: Curve.EaseInOut
+      duration: 250,
+      curve: Curve.EaseOut
     })
     .onClick(() => {
       if (this.currentIndex !== index) {
