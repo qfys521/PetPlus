@@ -1,63 +1,15 @@
 // api/httpClient.ts
-import http from '@ohos.net.http';
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, Method } from '@ohos/axios';
 import { ApiError, ResponseBean } from './types';
 
 /**
- * 安全合并请求头（规避 arkts-no-spread）
- */
-function mergeHeaders(custom?: Record<string, string>): Record<string, string> {
-  const headers: Record<string, string> = {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json'
-  };
-
-  if (custom) {
-    const keys: string[] = Object.keys(custom);
-    for (let i = 0; i < keys.length; i++) {
-      const key: string = keys[i];
-      headers[key] = custom[key];
-    }
-  }
-  return headers;
-}
-
-/**
- * 构建查询参数（URL 编码）
- */
-function buildQueryParams(params: Record<string, string | number | boolean>): string {
-  const entries: string[] = [];
-  const keys: string[] = Object.keys(params);
-
-  for (let i = 0; i < keys.length; i++) {
-    const key = keys[i];
-    const value = params[key];
-
-    // 空值跳过
-    if (value === null || value === undefined) continue;
-
-    // 特殊处理：布尔值转字符串
-    let strValue = typeof value === 'boolean'
-      ? (value ? 'true' : 'false')
-      : String(value);
-
-    // URL 编码（处理时间格式中的空格和冒号）
-    strValue = encodeURIComponent(strValue)
-      .replace(/%20/g, '+')
-      .replace(/%3A/g, ':');
-
-    entries.push(`${encodeURIComponent(key)}=${strValue}`);
-  }
-  return entries.join('&');
-}
-
-/**
- * 通用 HTTP 客户端（类型安全）
+ * 通用 HTTP 客户端（基于 @ohos/axios 封装）
  */
 export async function request<T>(
   baseUrl: string,
   endpoint: string,
   options: {
-    method: http.RequestMethod;
+    method: string; // 兼容原生 http.RequestMethod 定义（如 "POST", "GET" 等）
     params?: Record<string, string | number | boolean>;
     data?: object;
     headers?: Record<string, string>;
@@ -65,52 +17,47 @@ export async function request<T>(
   }
 ): Promise<T> {
 
-  const httpRequest = http.createHttp();
-
   try {
-    let url = `${baseUrl}${endpoint}`;
-    if (options.params && Object.keys(options.params).length > 0) {
-      url += `?${buildQueryParams(options.params)}`;
-    }
-
-    const reqConfig: http.HttpRequestOptions = {
-      method: options.method,
-      header: mergeHeaders(options.headers),
-      connectTimeout: options.timeout ?? 30000,
-      readTimeout: options.timeout ?? 30000
+    // 构造 Axios 请求配置
+    const config: AxiosRequestConfig = {
+      baseURL: baseUrl,
+      url: endpoint,
+      method: options.method as Method,
+      // Axios 会自动帮我们把 params 对象转化为 URL 参数拼接并进行 Encode 处理
+      params: options.params,
+      // data 会被自动转换为 JSON 并放到请求体中
+      data: options.data,
+      headers: Object.assign({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }, options.headers || {}),
+      timeout: options.timeout ?? 30000
     };
 
-    if (
-      options.data !== undefined &&
-        (options.method === http.RequestMethod.POST ||
-          options.method === http.RequestMethod.PUT)
-    ) {
-      reqConfig.extraData = JSON.stringify(options.data);
-    }
+    // 发起网络请求
+    const response: AxiosResponse<ResponseBean<T>> = await axios.request(config);
 
-    const response: http.HttpResponse =
-      await httpRequest.request(url, reqConfig);
+    // Axios 默认只有 2xx 状态码才会进入此区块，直接取出业务数据
+    const result = response.data;
 
-    if (response.responseCode < 200 || response.responseCode >= 300) {
-      throw new ApiError(
-        response.responseCode,
-        `HTTP Error: ${response.responseCode}`
-      );
-    }
-
-    const result = JSON.parse(response.result as string) as ResponseBean<T>;
-
+    // 返回泛型 T 数据（你的原始结构 ResponseBean<T>，其中包含实际数据 data）
     return result.data;
 
   } catch (err) {
-
+    // 捕获之前定义的 ApiError 直接抛出
     if (err instanceof ApiError) {
-      throw err; // 保持 reject
+      throw err;
     }
 
-    throw new ApiError(-1, '网络异常或未知错误');
+    // 捕获 Axios 包装的异常
+    if (axios.isAxiosError(err)) {
+      const axiosErr = err as AxiosError;
+      const status = axiosErr.response?.status || -1;
+      const message = axiosErr.message || '网络请求错误';
+      throw new ApiError(status, `HTTP Error: ${status} - ${message}`);
+    }
 
-  } finally {
-    httpRequest.destroy();
+    // 其他未知异常
+    throw new ApiError(-1, '网络异常或未知错误');
   }
 }

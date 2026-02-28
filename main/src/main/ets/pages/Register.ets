@@ -4,7 +4,7 @@ import { ApiError } from '../api/types';
 
 @Entry
 @Component
-struct register {
+struct Register {
 
   @State username: string = "";
   @State password: string = "";
@@ -12,26 +12,23 @@ struct register {
   @State email: string = "";
   @State phone: string = "";
   @State isAgree: boolean = false;
+  // 1. 增加防重点击/加载状态
+  @State isRegistering: boolean = false;
 
   build() {
     Stack() {
-
-      // ===== 背景 =====
       Image($r('app.media.bg1'))
         .width('100%')
         .height('100%')
         .objectFit(ImageFit.Cover)
 
-      // ===== 模糊层 =====
       Column()
         .width('100%')
         .height('100%')
         .backgroundColor($r('app.color.login_blur_layer'))
         .backdropBlur(25)
 
-      // ===== 主体 =====
       Column() {
-
         Text("创建账号")
           .fontSize(28)
           .fontWeight(FontWeight.Bold)
@@ -39,24 +36,14 @@ struct register {
           .margin({ top: 110, bottom: 40 })
 
         Column({ space: 18 }) {
-
-          // 用户名
           this.inputItem('person', "请输入用户名", this.username, v => this.username = v)
-
-          // 邮箱
           this.inputItem('envelope', "请输入邮箱", this.email, v => this.email = v)
-
-          // 手机号
           this.inputItem('phone', "请输入手机号", this.phone, v => this.phone = v)
-
-          // 密码
           this.passwordItem("请输入密码", this.password, v => this.password = v)
-
-          // 确认密码
           this.passwordItem("请确认密码", this.confirmPassword, v => this.confirmPassword = v)
 
-          // 注册按钮
-          Button("立即注册")
+          // 2. 根据状态改变文字，并设置 enabled 属性
+          Button(this.isRegistering ? "注册中..." : "立即注册")
             .width('100%')
             .height(50)
             .borderRadius(14)
@@ -65,9 +52,10 @@ struct register {
             .fontSize(18)
             .fontWeight(FontWeight.Bold)
             .margin({ top: 10 })
+            .enabled(!this.isRegistering) // 防止重复点击
+            .opacity(this.isRegistering ? 0.7 : 1)
             .onClick(() => this.register())
 
-          // 返回登录
           Row() {
             Text("已有账号?")
               .fontSize(14)
@@ -92,7 +80,6 @@ struct register {
         .borderRadius(22)
         .alignItems(HorizontalAlign.Center)
 
-        // 协议
         Row() {
           Checkbox()
             .select(this.isAgree)
@@ -120,9 +107,9 @@ struct register {
     }
   }
 
-  // ===== 通用输入框 =====
   @Builder
   private inputItem(icon: string, placeholder: string, value: string, onChange: (v: string) => void) {
+    // 你的原有UI代码，省略...
     Row() {
       SymbolGlyph($r(`sys.symbol.${icon}`))
         .fontSize(20)
@@ -144,9 +131,9 @@ struct register {
     }
   }
 
-  // ===== 密码输入框 =====
   @Builder
   private passwordItem(placeholder: string, value: string, onChange: (v: string) => void) {
+    // 你的原有UI代码，省略...
     Row() {
       SymbolGlyph($r('sys.symbol.lock'))
         .fontSize(20)
@@ -169,9 +156,7 @@ struct register {
     }
   }
 
-  // ===== 注册逻辑 =====
   async register() {
-
     if (!this.username || !this.password || !this.confirmPassword) {
       ToastUtil.showToast("请填写完整信息");
       return;
@@ -187,6 +172,10 @@ struct register {
       return;
     }
 
+    // 3. 拦截判断
+    if (this.isRegistering) return;
+    this.isRegistering = true;
+
     await setUserinfo({
       userName: this.username.trim(),
       password: this.password.trim(),
@@ -197,10 +186,16 @@ struct register {
       .then(res => {
         ToastUtil.showToast("注册成功");
         LogUtil.info(`[注册] 成功`);
+        // 可以考虑注册成功后自动返回登录页：
+        setTimeout(() => this.getUIContext().getRouter().back(), 1500);
       })
       .catch((err: ApiError) => {
         ToastUtil.showToast("注册失败");
         LogUtil.error(`[注册] 失败:${"\n"}${JSON.stringify(err, null, 4)}`);
+      })
+      .finally(() => {
+        // 4. 重置状态
+        this.isRegistering = false;
       });
   }
 }
