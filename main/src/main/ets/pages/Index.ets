@@ -1,4 +1,4 @@
-import { LogUtil, ToastUtil, PreferencesUtil, StrUtil } from '@pura/harmony-utils';
+import { LogUtil, ToastUtil, PreferencesUtil, StrUtil, DialogUtil } from '@pura/harmony-utils';
 import { petsUserLogin } from '../api/services';
 import { ApiError } from '../api/types';
 
@@ -159,7 +159,10 @@ struct Index {
             .fontSize(12)
             .fontColor($r('app.color.login_highlight'))
             .onClick(() => {
-
+              this.getUIContext().showAlertDialog({
+                title: "用户协议",
+                message: $r('app.string.user_agreement')
+              })
             })
 
           Text(" 和 ")
@@ -170,7 +173,10 @@ struct Index {
             .fontSize(12)
             .fontColor($r('app.color.login_highlight'))
             .onClick(() => {
-
+              this.getUIContext().showAlertDialog({
+                title: "隐私政策",
+                message: $r('app.string.privacy_policy')
+              })
             })
         }
         .margin({ top: 30 })
