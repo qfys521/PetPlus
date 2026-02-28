@@ -8,6 +8,14 @@ import {
   PetHealthHistory
 } from '../api/types';
 
+// ==== HarmonyOS NEXT (API 12+) 截图与系统分享相关 Kit 模块 ====
+import { componentSnapshot } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
+import { fileIo as fs, fileUri } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
+import { systemShare } from '@kit.ShareKit';               // 新版系统分享 Kit
+import { uniformTypeDescriptor } from '@kit.ArkData';       // 新版标准数据类型 Kit
+import deviceInfo from '@ohos.deviceInfo';                  // 设备信息模块
 
 export class PieChartData {
   value: number = 0;
@@ -27,11 +35,11 @@ export struct Health {
   @State petInfo: PetBean | null = null;
   @State healthHistoryList: PetHealthHistory[] = [];
 
-
   @State isLoading: boolean = true;
   @State isError: boolean = false;
 
-
+  // 是否支持分享功能（2in1设备为false）
+  @State isSupportShare: boolean = true;
 
   @State lineOption: Options = new Options({
     xAxis: { data: ['--'] },
@@ -45,7 +53,6 @@ export struct Health {
     ]
   });
 
-
   @State pieOption: Options = new Options({
     series: [{
       data: [
@@ -58,13 +65,11 @@ export struct Health {
     this.initData();
   }
 
-
   private extractNumber(str: string | undefined): number {
     if (!str) return 0;
     const match = str.match(/-?\d+(\.\d+)?/);
     return match ? Number(match[0]) : 0;
   }
-
 
   private formatTime(d: Date): string {
     const pad = (n: number) => n.toString().padStart(2, '0');
@@ -73,9 +78,9 @@ export struct Health {
 
   private initData() {
     try {
-      const userInfoStr = PreferencesUtil.getStringSync("user_info", "");
+      const userInfoStr: string = PreferencesUtil.getStringSync("user_info", "");
       if (userInfoStr) {
-        const userInfo: UserBean = JSON.parse(userInfoStr);
+        const userInfo: UserBean = JSON.parse(userInfoStr) as UserBean;
         this.userKey = userInfo.key || "";
       }
     } catch (e) {
@@ -90,10 +95,8 @@ export struct Health {
     }
 
     this.isLoading = true;
-    const now = new Date();
-
-    const halfYearAgo = new Date(now.getTime() - 180 * 24 * 60 * 60 * 1000);
-
+    const now: Date = new Date();
+    const halfYearAgo: Date = new Date(now.getTime() - 180 * 24 * 60 * 60 * 1000);
 
     getPets(this.userKey).then((res: Object) => {
       if (Array.isArray(res) && res.length > 0) {
@@ -105,7 +108,6 @@ export struct Health {
         }
       }
     }).catch(() => {
-
       this.petInfo = {
         petName: "布丁",
         petSpecies: "猫",
@@ -114,7 +116,6 @@ export struct Health {
         healthStatus: "健康"
       } as PetBean;
     });
-
 
     const historyParams: GetPetHealthHistoryRequest = {
       key: this.userKey,
@@ -151,7 +152,6 @@ export struct Health {
     });
   }
 
-
   private loadMockHistory() {
     this.healthHistoryList = [
       { recordDate: "2024-02-28", bodyWeight: "4.5", bodyTemperature: "38.5", appetiteLevel: "Excellent", vaccinationStatus: "Up-to-date", dewormingStatus: "Completed" },
@@ -162,11 +162,10 @@ export struct Health {
   }
 
   private updateCharts(data: PetHealthHistory[]) {
-
-    const chartData = [...data].reverse();
-    const dates = chartData.map(item => item.recordDate ? item.recordDate.substring(5, 10) : '');
-    const temps = chartData.map(item => this.extractNumber(item.bodyTemperature));
-    const weights = chartData.map(item => this.extractNumber(item.bodyWeight));
+    const chartData: PetHealthHistory[] = [...data].reverse();
+    const dates: string[] = chartData.map(item => item.recordDate ? item.recordDate.substring(5, 10) : '');
+    const temps: number[] = chartData.map(item => this.extractNumber(item.bodyTemperature));
+    const weights: number[] = chartData.map(item => this.extractNumber(item.bodyWeight));
 
     this.lineOption.setVal({
       xAxis: { data: dates },
@@ -176,14 +175,14 @@ export struct Health {
       ]
     });
 
-
-    let excellent = 0, normal = 0, poor = 0;
-    data.forEach(item => {
+    let excellent: number = 0;
+    let normal: number = 0;
+    let poor: number = 0;
+    data.forEach((item: PetHealthHistory) => {
       if (item.appetiteLevel === 'Excellent') excellent++;
       else if (item.appetiteLevel === 'Poor') poor++;
       else normal++;
     });
-
 
     const pieData: PieChartData[] = [];
     if (excellent > 0) pieData.push(new PieChartData(excellent, '食欲极佳'));
@@ -195,38 +194,104 @@ export struct Health {
     }
   }
 
-  build() {
-    Scroll() {
-      GridRow({
-        breakpoints: { value: ["600vp", "840vp"], reference: BreakpointsReference.WindowSize },
-        columns: { sm: 4, md: 8, lg: 12 },
-        gutter: { x: 16, y: 16 }
-      }) {
-        GridCol({ span: { sm: 4, md: 4, lg: 4 } }) {
-          Column({ space: 16 }) {
-            this.HealthOverviewCard()
-            this.MedicalStatusCard()
-            this.AppetitePieChartCard()
-          }
-        }
+  // ==== 核心：截图并使用 ShareKit 调起系统分享 ====
+  private async handleShareClick(): Promise<void> {
+    try {
+      ToastUtil.showToast("正在生成分享图片...");
 
-        GridCol({ span: { sm: 4, md: 4, lg: 8 } }) {
-          Column({ space: 16 }) {
-            this.TrendLineChartCard()
-            this.HistoryListCard()
+      // 1. 获取组件快照
+      let pixelMap: image.PixelMap = await componentSnapshot.get('share_content_area');
+
+      // 2. 将 PixelMap 打包为 JPEG 数据流
+      let imagePacker: image.ImagePacker = image.createImagePacker();
+      let packOptions: image.PackingOption = { format: "image/jpeg", quality: 90 };
+      let arrayBuffer: ArrayBuffer = await imagePacker.packing(pixelMap, packOptions);
+
+      // 3. 将图片写入本地沙箱的 cache 目录
+      let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+      let fileName: string = `pet_health_share_${new Date().getTime()}.jpg`;
+      let filePath: string = `${context.cacheDir}/${fileName}`;
+      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE | fs.OpenMode.TRUNC);
+      fs.writeSync(file.fd, arrayBuffer);
+      fs.closeSync(file);
+
+      // 4. 获取标准化 URI
+      let uri: string = fileUri.getUriFromPath(filePath);
+
+      // 5. 构造新版 systemShare 数据对象
+      let shareData: systemShare.SharedData = new systemShare.SharedData({
+        utd: uniformTypeDescriptor.UniformDataType.JPEG,
+        uri: uri
+      });
+
+      // 6. 唤起系统原生分享面板
+      let controller: systemShare.ShareController = new systemShare.ShareController(shareData);
+      controller.show(context, {
+        previewMode: systemShare.SharePreviewMode.DETAIL,
+        selectionMode: systemShare.SelectionMode.SINGLE
+      });
+
+    } catch (err) {
+      let errMsg: string = err instanceof Error ? err.message : JSON.stringify(err);
+      LogUtil.error(`分享截图失败: ${errMsg}`);
+      ToastUtil.showToast("分享失败，请稍后重试");
+    }
+  }
+
+  build() {
+    Stack({ alignContent: Alignment.BottomEnd }) {
+      Scroll() {
+        GridRow({
+          breakpoints: { value: ["600vp", "840vp"], reference: BreakpointsReference.WindowSize },
+          columns: { sm: 4, md: 8, lg: 12 },
+          gutter: { x: 16, y: 16 }
+        }) {
+          GridCol({ span: { sm: 4, md: 4, lg: 4 } }) {
+            Column({ space: 16 }) {
+              this.HealthOverviewCard()
+              this.MedicalStatusCard()
+              this.AppetitePieChartCard()
+            }
+          }
+
+          GridCol({ span: { sm: 4, md: 4, lg: 8 } }) {
+            Column({ space: 16 }) {
+              this.TrendLineChartCard()
+              this.HistoryListCard()
+            }
           }
         }
+        .onBreakpointChange((breakpoint: string) => {
+          this.currentBreakpoint = breakpoint;
+        })
+        .width('100%')
+        .padding({ bottom: 80 })
       }
-      .onBreakpointChange((breakpoint: string) => {
-        this.currentBreakpoint = breakpoint;
-      })
+      .id('share_content_area') // 指定供组件截图的ID
       .width('100%')
-      .padding({ bottom: 20 })
+      .height('100%')
+      .scrollBar(BarState.Off)
+      .align(Alignment.Top)
+
+      // ==== 2in1 设备不显示分享悬浮窗 ====
+      if (this.isSupportShare) {
+        Button({ type: ButtonType.Circle, stateEffect: true }) {
+          SymbolGlyph($r('sys.symbol.share'))
+            .fontSize(24)
+            .fontColor([Color.White])
+        }
+        .width(56)
+        .height(56)
+        .margin({ right: 24, bottom: 48 })
+        .backgroundColor('#1890FF')
+        .shadow({ radius: 10, color: 'rgba(24, 144, 255, 0.4)', offsetX: 0, offsetY: 4 })
+        .onClick(() => {
+          this.handleShareClick();
+        })
+      }
     }
     .width('100%')
     .height('100%')
-    .scrollBar(BarState.Off)
-    .align(Alignment.Top)
   }
 
   @Builder
@@ -268,9 +333,7 @@ export struct Health {
   @Builder
   private MedicalStatusCard() {
     Row() {
-
       Column({ space: 8 }) {
-
         SymbolGlyph($r('sys.symbol.checkmark_circle_fill'))
           .fontSize(28)
           .fontColor(this.getLatestHistory()?.vaccinationStatus === 'Up-to-date' ? ['#52C41A'] : ['#FF4D4F'])
@@ -286,7 +349,6 @@ export struct Health {
       .alignItems(HorizontalAlign.Center)
 
       Divider().vertical(true).height(40).color('#E5E5E5')
-
 
       Column({ space: 8 }) {
         SymbolGlyph($r('sys.symbol.star_circle_fill'))
