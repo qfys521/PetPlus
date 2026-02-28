@@ -2,41 +2,41 @@ import { LogUtil } from '@pura/harmony-utils';
 import { IntelCategory, knowledgeData } from '../data/knowledge';
 import { display } from '@kit.ArkUI';
 
-// 引入设备显示模块，用于获取真实屏幕尺寸
+
 
 @Component
 export struct Intel {
-  // 核心控制变量：是否为移动端布局
+
   @State isMobileLayout: boolean = true;
 
-  // 控制“回到顶部”按钮的显示
+
   @State showScrollToTop: boolean = false;
-  // 给主要的 Scroll/List 绑定控制器，用于跳转顶部
+
   private scroller: Scroller = new Scroller();
 
-  // 原始数据
+
   private allData: IntelCategory[] = [];
-  // 视图绑定的数据
+
   @State displayData: IntelCategory[] = [];
 
   @State searchKeyword: string = '';
   @State isSearching: boolean = true;
   private searchDebounceTimer: number = -1;
 
-  // 记录哪些分类处于展开状态
+
   @State expandedCategories: string[] = [];
 
-  // PC平板端左侧分类边栏的列表
+
   @State categoryList: string[] = ['全部'];
   @State selectedCategory: string = '全部';
 
   aboutToAppear(): void {
-    // 1. 获取真实屏幕物理宽度，防止布局误判
+
     try {
       const displayObj = display.getDefaultDisplaySync();
-      // 获取物理像素并转为逻辑像素 vp，或者简单比较宽高
+
       if (displayObj.width < displayObj.height || displayObj.width < 1500) {
-        // 通常竖屏(宽<高)绝对是手机。或者物理像素宽度不够大也是手机。
+
         this.isMobileLayout = true;
       } else {
         this.isMobileLayout = false;
@@ -62,7 +62,7 @@ export struct Intel {
       });
       this.categoryList = cats;
 
-      // 如果是 PC，默认展开第一个
+
       if (!this.isMobileLayout && this.allData.length > 0) {
         this.expandedCategories = [this.allData[0].title];
       }
@@ -74,7 +74,7 @@ export struct Intel {
     }
   }
 
-  // === 展开与折叠 ===
+
   private toggleCategory(title: string): void {
     const index = this.expandedCategories.indexOf(title);
     if (index >= 0) {
@@ -88,7 +88,7 @@ export struct Intel {
     return this.expandedCategories.indexOf(title) >= 0;
   }
 
-  // === 搜索与过滤 ===
+
   private handleSearchFilter(): void {
     this.isSearching = true;
 
@@ -100,7 +100,7 @@ export struct Intel {
       new Promise<IntelCategory[]>((resolve: (res: IntelCategory[]) => void): void => {
         let result: IntelCategory[] = this.allData;
 
-        // 只有非移动端才受左侧侧��栏影响
+
         if (!this.isMobileLayout && this.selectedCategory !== '全部') {
           result = result.filter((item: IntelCategory): boolean => this.extractShortTitle(item.title) === this.selectedCategory);
         }
@@ -114,7 +114,7 @@ export struct Intel {
             sentence.toLowerCase().includes(kw)
             );
 
-            // 如果有搜索词，自动展开匹配的分类
+
             if (titleMatches || matchedSentences.length > 0) {
               if (this.expandedCategories.indexOf(category.title) === -1) {
                 this.expandedCategories.push(category.title);
@@ -179,7 +179,7 @@ export struct Intel {
           this.HeaderSection()
 
           if (this.isMobileLayout) {
-            // 【移动端】：全屏宽度，折叠卡片上下排列
+
             Stack({ alignContent: Alignment.Center }) {
               this.ContentList()
               if (this.isSearching) this.LoadingIndicator()
@@ -187,7 +187,7 @@ export struct Intel {
             .layoutWeight(1)
             .width('100%')
           } else {
-            // 【PC/平板端】：左右双栏布局
+
             Row() {
               Column() {
                 this.DesktopCategorySidebar()
@@ -213,7 +213,7 @@ export struct Intel {
       }
       .width('100%')
       .height('100%')
-      // 使用更可靠的窗口拉伸监听作为补充
+
       .onAreaChange((oldValue: Area, newValue: Area) => {
         const w = newValue.width as number;
         const h = newValue.height as number;
@@ -224,7 +224,7 @@ export struct Intel {
         }
       })
 
-      // === 悬浮的回到顶部按钮 ===
+
       if (this.showScrollToTop) {
         Button({ type: ButtonType.Circle }) {
           SymbolGlyph($r('sys.symbol.arrow_up'))
@@ -238,7 +238,7 @@ export struct Intel {
         .margin({ right: 24, bottom: 40 })
         .transition({ type: TransitionType.All, opacity: 1, scale: { x: 0, y: 0 } })
         .onClick((): void => {
-          // 调用 Scroller 动画滚动到列表最顶部
+
           this.scroller.scrollTo({ xOffset: 0, yOffset: 0, animation: { duration: 300, curve: Curve.EaseInOut } });
         })
       }
@@ -311,7 +311,7 @@ export struct Intel {
       .height('100%')
       .justifyContent(FlexAlign.Center)
     } else {
-      // 绑定 Scroller，监听滚动事件来控制“回到顶部”的显隐
+
       List({ space: 16, scroller: this.scroller }) {
         ForEach(this.displayData, (category: IntelCategory) => {
           ListItem() {
@@ -324,7 +324,7 @@ export struct Intel {
       .scrollBar(BarState.Off)
       .padding({ left: this.isMobileLayout ? 16 : 0, right: this.isMobileLayout ? 16 : 0, bottom: 20 })
       .onScroll((xOffset: number, yOffset: number): void => {
-        // 获取当前滚动的总偏移量，若大于300则显示按钮，否则隐藏
+
         const y = this.scroller.currentOffset().yOffset;
         if (y > 300 && !this.showScrollToTop) {
           animateTo({ duration: 200 }, (): void => { this.showScrollToTop = true; });
@@ -338,7 +338,7 @@ export struct Intel {
   @Builder
   private CategoryFoldCard(category: IntelCategory): void {
     Column() {
-      // 头部点击区
+
       Row() {
         SymbolGlyph($r('sys.symbol.doc_text')).fontSize(20).fontColor(['#1890FF']).margin({ right: 12 })
 
@@ -367,7 +367,7 @@ export struct Intel {
         this.toggleCategory(category.title);
       })
 
-      // 展开内容区
+
       if (this.isExpanded(category.title)) {
         Column({ space: 12 }) {
           ForEach(category.subSentences, (sentence: string) => {
