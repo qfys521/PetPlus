@@ -128,7 +128,7 @@ struct Index {
               .fontWeight(FontWeight.Bold)
               .onClick(() =>{
                 this.getUIContext().getRouter().pushUrl({
-                  url: "pages/register"
+                  url: "pages/Register"
                 }).catch((err:Error) => {
                   ToastUtil.showToast("[系统错误] 无法跳转至注册页面！")
                   LogUtil.error(`[跳转] 失败 | 错误:${"\n"}${JSON.stringify(err , null, 4)}`)
