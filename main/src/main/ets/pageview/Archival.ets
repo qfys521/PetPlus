@@ -420,11 +420,11 @@ export struct Archival {
       .alignItems(HorizontalAlign.Start)
       .layoutWeight(1)
 
-      // 【修改点】：回退为 Toggle 开关和文字删除按钮的组合
+
       Column({ space: 10 }) {
         Toggle({ type: ToggleType.Switch, isOn: String(schedule.isActive) === 'true' })
           .onChange((isOn: boolean): void => {
-            ToastUtil.showToast(`计划已${isOn ? '开启' : '关闭'} (请调用云端接口)`);
+            ToastUtil.showToast(`计划已${isOn ? '开启' : '关闭'}`);
           })
         Button("删除")
           .height(28)
@@ -443,9 +443,9 @@ export struct Archival {
   }
 }
 
-// =========================
-// 弹窗1：宠物增改
-// =========================
+
+
+
 @CustomDialog
 struct PetDialog {
   controller: CustomDialogController
@@ -487,9 +487,9 @@ struct PetDialog {
   }
 }
 
-// =========================
-// 弹窗2：喂食计划增改
-// =========================
+
+
+
 @CustomDialog
 struct ScheduleDialog {
   controller: CustomDialogController
@@ -529,9 +529,9 @@ struct ScheduleDialog {
   }
 }
 
-// =========================
-// 弹窗3：定量立即投喂
-// =========================
+
+
+
 @CustomDialog
 struct InstantFeedDialog {
   controller: CustomDialogController
@@ -564,7 +564,7 @@ struct InstantFeedDialog {
   }
 }
 
-// === 毛玻璃样式扩展 ===
+
 @Extend(Column) function colGlassCardStyle() {
   .width('100%').padding(20)
   .backgroundColor('rgba(255, 255, 255, 0.45)')
