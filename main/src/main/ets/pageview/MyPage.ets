@@ -55,7 +55,7 @@ struct EditUserInfoDialog {
       .margin({ top: 15, bottom: 5 })
     }
     .padding(25)
-    // 限制弹窗最大宽度，防止 PC 端拉得过长
+
     .constraintSize({ maxWidth: 450 })
     .width('90%')
     .backgroundColor('rgba(40, 40, 50, 0.65)')
@@ -198,7 +198,7 @@ struct MyPage {
 
   build() {
     Stack() {
-      // 1. 背景层
+
       Image($r('app.media.bg1'))
         .width('100%')
         .height('100%')
@@ -210,9 +210,9 @@ struct MyPage {
         .backgroundColor($r('app.color.login_blur_layer'))
         .backdropBlur(25)
 
-      // 2. 主内容区
+
       Column() {
-        // 顶部导航栏 (宽度全屏，不受卡片最大宽度的影响)
+
         Row() {
           SymbolGlyph($r('sys.symbol.chevron_left'))
             .fontSize(28)
@@ -234,11 +234,11 @@ struct MyPage {
         .padding({ left: 15, right: 15 })
         .margin({ top: 40 })
 
-        // 可滚动的中间内容
+
         Scroll() {
-          // 这里是关键优化：将内容的 Column 包裹，并设置居中对齐和最大宽度
+
           Column() {
-            // 用户资料卡片
+
             Row() {
               Image($r('app.media.touxiang2'))
                 .width(70)
@@ -279,7 +279,7 @@ struct MyPage {
               this.openEditDialog();
             })
 
-            // 菜单列表卡片
+
             Column() {
               this.MenuItem('sys.symbol.person_crop_circle_badge_exclamationmark', "修改个人信息", () => {
                 this.openEditDialog();
@@ -306,7 +306,7 @@ struct MyPage {
             .border({ width: 1, color: 'rgba(255,255,255,0.15)' })
             .backdropBlur(15)
 
-            // 底部占位与按钮
+
             Blank().layoutWeight(1)
 
             Button("退出登录")
@@ -324,7 +324,7 @@ struct MyPage {
                 this.showLogoutDialog();
               })
           }
-          // 限制最大宽度，在 PC 大屏下居中显示，在手机端保持 90%
+
           .constraintSize({ maxWidth: 600, minHeight: '100%' })
           .width('90%')
         }
