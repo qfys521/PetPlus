@@ -1,4 +1,4 @@
-// DataSource.ets
+
 export class BasicDataSource<T> implements IDataSource {
   private dataArray: T[] = [];
   private listeners: DataChangeListener[] = [];
