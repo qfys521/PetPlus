@@ -1,8 +1,5 @@
 import axios, {
-  AxiosError,
-  AxiosRequestConfig,
-  AxiosResponse,
-  Method
+  AxiosError, AxiosRequestConfig, AxiosResponse, Method
 } from '@ohos/axios';
 import { ApiError, ResponseBean } from './types';
 import { LogUtil } from '@pura/harmony-utils';
@@ -37,8 +34,6 @@ export async function request<T>(
       headers: options.headers as Record<string, string>,
       timeout: options.timeout ?? 30000
     };
-
-
 
 
     LogUtil.info(`
@@ -86,8 +81,6 @@ Message: ${result.message}
   } catch (err) {
 
 
-
-
     if (axios.isAxiosError(err)) {
       const axiosErr = err as AxiosError<Object, Object>;
 
@@ -95,6 +88,7 @@ Message: ${result.message}
 URL: ${fullUrl}
 Status: ${axiosErr.response?.status}
 Message: ${axiosErr.message}
+Data: ${JSON.stringify(axiosErr.response?.data)}
 `);
 
       throw new ApiError(
@@ -102,8 +96,6 @@ Message: ${axiosErr.message}
         `网络异常: ${axiosErr.message}`
       );
     }
-
-
 
 
     if (err instanceof ApiError) {
@@ -116,8 +108,6 @@ Message: ${err.message}
     }
 
 
-
-
     const errObj = err as Error;
 
     LogUtil.error(`
@@ -128,7 +118,6 @@ Message: ${errObj.message}
     throw new ApiError(-1, errObj.message || '未知错误');
 
   } finally {
-
 
 
     LogUtil.info(`
