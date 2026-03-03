@@ -1,4 +1,3 @@
-
 export interface ResponseBean<T> {
   code: string;
   message: string;
@@ -24,7 +23,6 @@ export class ApiError extends Error {
   }
 }
 
-
 export interface UserBean {
   id: string;
   userName: string;
@@ -49,7 +47,6 @@ export interface SetUserinfoRequest {
   key?: string;
 }
 
-
 export interface PetBean {
   id: number;
   userId: number;
@@ -71,12 +68,17 @@ export interface UpdatePetsRequest {
   petBreed: string;
   petGender: string;
   birthDate: string;
-  currentweight: string;
-  healthstatus: string;
+  currentWeight: string;
+  healthStatus: string;
   id: string;
   userId: string;
 }
 
+export interface DelPetsRequest {
+  key: string;
+  userId: string;
+  id: string;
+}
 
 export interface FeedingSchedulesBean {
   id: string;
@@ -84,7 +86,7 @@ export interface FeedingSchedulesBean {
   deviceId: string;
   scheduleTime: string;
   foodAmount: string;
-  isActive: boolean | string;
+  isActive: boolean | string | number;
   createdAt: string;
   updatedAt: string;
   petName: string;
@@ -92,7 +94,32 @@ export interface FeedingSchedulesBean {
   deviceName: string;
 }
 
-export interface AddFeedingDeviceRequest {
+export interface AddFeedingDevicesRequest {
+  key: string;
+  userId: string;
+  deviceName: string;
+  deviceType: string;
+  deviceStatus: string;
+  installLocation: string;
+}
+
+export interface UpdateFeedingDevicesRequest {
+  key: string;
+  userId: string;
+  id: string;
+  deviceName: string;
+  deviceType: string;
+  deviceStatus: string;
+  installLocation: string;
+}
+
+export interface DelFeedingDevicesRequest {
+  key: string;
+  userId: string;
+  id: string;
+}
+
+export interface AddFeedingSchedulesRequest {
   key: string;
   petId: string;
   deviceId: string;
@@ -102,6 +129,23 @@ export interface AddFeedingDeviceRequest {
   schedulesInfo: string;
 }
 
+export interface UpdateFeedingSchedulesRequest {
+  key: string;
+  userId: string;
+  id: string;
+  petId: string;
+  deviceId: string;
+  scheduleTime: string;
+  foodAmount: string;
+  isActive: string;
+  schedulesInfo: string;
+}
+
+export interface DelFeedingSchedulesRequest {
+  key: string;
+  userId: string;
+  id: string;
+}
 
 export interface PetHealthHistory {
   petName?: string;
@@ -136,7 +180,6 @@ export interface GetPetHealthHistoryRequest {
   size: string;
 }
 
-
 export interface MonitoringBean {
   userId?: string;
   monitoringTime?: string;
@@ -159,7 +202,6 @@ export interface GetMonitoringRequest {
   endTime: string;
 }
 
-
 export interface FeedingRecordBean {
   scheduledTime?: string;
   actualTime?: string;
@@ -172,7 +214,6 @@ export interface FeedingRecordBean {
   deviceName?: string;
 }
 
-
 export interface GetFeedingRecordRequest {
   key: string;
   petId: string;
@@ -181,7 +222,6 @@ export interface GetFeedingRecordRequest {
   page: string;
   size: string;
 }
-
 
 export interface PutFeedingRequest {
   key: string;
