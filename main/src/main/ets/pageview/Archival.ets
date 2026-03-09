@@ -756,7 +756,7 @@ struct ScheduleDialog {
 
   build() {
     Column({ space: 16 }) {
-      Text(this.sEditId ? "编辑喂食计划" : "新增喂���计划").fontSize(20).fontWeight(FontWeight.Bold)
+      Text(this.sEditId ? "编辑喂食计划" : "新增喂食计划").fontSize(20).fontWeight(FontWeight.Bold)
 
       Select(this.deviceList.map((item: DeviceBean): SelectOption => {
         return { value: item.deviceName + (item.installLocation ? ` (${item.installLocation})` : '') };
