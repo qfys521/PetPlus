@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="21373465-96f4-4634-9dc3-d1db102346d9" name="更改" comment="feat: 修改文件路径" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_E:/Code/PetPlus" value="3A9QaJ39rE8prVAprXn1dBppRMP" />
+    </persistenceIdMap>
+  </component>
+  <component name="CopilotUserSelectedChatMode">
+    <option name="chatModeId" value="Agent" />
+  </component>
+  <component name="CopilotUserSelectedModel">
+    <selectedModels>
+      <entry key="chat-panel" value="GPT-5.2" />
+      <entry key="agent-panel" value="GPT-5.2" />
+    </selectedModels>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="ArkTS File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="HiLogStateProjectLevelPreference">
+    <panelStates>
+      <hilogPanelState>
+        <option name="filterName" value="User logs of selected app" />
+        <option name="logPanelType" value="ONLINE" />
+        <option name="processName" value="cn.qfys521.petplus" />
+      </hilogPanelState>
+    </panelStates>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="PreviewChecker" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="3A9QaJ39rE8prVAprXn1dBppRMP" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;127.0.0.1:5555&quot;: &quot;5369527111773040355574&quot;,
+    &quot;127.0.0.1:5557&quot;: &quot;5369961651773036372217&quot;,
+    &quot;Application.main.executor&quot;: &quot;Run&quot;,
+    &quot;MODULE_HAP_TIME&quot;: &quot;{\&quot;127.0.0.1:5557main\&quot;:\&quot;2026-03-09T06:06:14.271499900Z\&quot;,\&quot;127.0.0.1:5555main\&quot;:\&quot;2026-03-09T07:12:35.017638400Z\&quot;}&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;ace.nodejs.version&quot;: &quot;18.20.1&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Code/PetPlus/华为认证证书-共计8分&quot;,
+    &quot;projectSizeLastTraceTimestamp-7c2518afd0cd5e561d0b54ae297f9e63ce6aa015b1ee786e0faa666fabd5&quot;: &quot;1773028699455&quot;,
+    &quot;resolution&quot;: &quot;2560*1600&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.language.and.region&quot;,
+    &quot;shape&quot;: &quot;2in1&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Code\PetPlus\华为认证证书-共计8分" />
+      <recent name="E:\Code\PetPlus\docs" />
+      <recent name="E:\Code\PetPlus\docs\.images\.raw\2in1" />
+      <recent name="E:\Code\PetPlus\docs\.images\.raw\phone" />
+      <recent name="E:\Code\PetPlus\docs\.images\.raw" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Code\PetPlus\演示视频" />
+      <recent name="E:\Code\PetPlus\华为认证证书-共计8分" />
+      <recent name="E:\Code\PetPlus\演示文稿（PPT、用户手册、设计文档" />
+      <recent name="E:\Code\PetPlus\源代码" />
+      <recent name="E:\Code\PetPlus\docs" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.main">
+    <configuration name="main" type="HotReLoadTask" factoryName="Hot Reload">
+      <MODULE_NAME />
+      <REINSTALL_APPLICATION>true</REINSTALL_APPLICATION>
+      <ENVIRONMENT_VARIABLES>[]</ENVIRONMENT_VARIABLES>
+      <DEBUG_LINE_ENABLE_DATA>false</DEBUG_LINE_ENABLE_DATA>
+      <AUTO_DEPENDENCIES_DATA>true</AUTO_DEPENDENCIES_DATA>
+      <WEB_VIEW_DEBUG>false</WEB_VIEW_DEBUG>
+      <INSTALL_FLAGS_CONFIG_KEY />
+      <LAUNCH_FLAGS_CONFIG_KEY />
+      <LAUNCH_ABILITY_CONFIG_TYPE>Default Ability</LAUNCH_ABILITY_CONFIG_TYPE>
+      <LAUNCH_ABILITY_CONFIG_VALUE />
+      <SYMBOL_DIRS>[]</SYMBOL_DIRS>
+      <DEBUGGER_TYPE>Detect Automatically</DEBUGGER_TYPE>
+      <MULTI_HAP_MODULE_DATA>[]</MULTI_HAP_MODULE_DATA>
+      <SHOW_STATIC_VARIABLES>true</SHOW_STATIC_VARIABLES>
+      <LOGGING_TARGET_CHANNELS>lldb process:gdb-remote packets</LOGGING_TARGET_CHANNELS>
+      <USER_POST_ATTACH_COMMANDS>[]</USER_POST_ATTACH_COMMANDS>
+      <USER_STARTUP_COMMANDS>[]</USER_STARTUP_COMMANDS>
+      <ETS_SOURCE_PARIS>[]</ETS_SOURCE_PARIS>
+      <DEPLOY_MULTI_HAP>false</DEPLOY_MULTI_HAP>
+      <ALL_MODULES>false</ALL_MODULES>
+      <ASAN_ENABLE_DATA>false</ASAN_ENABLE_DATA>
+      <TSAN_ENABLE_DATA>false</TSAN_ENABLE_DATA>
+      <ERROR_INFO_ENHANCE_ENABLE_DATA>false</ERROR_INFO_ENHANCE_ENABLE_DATA>
+      <MULTI_THREAD_CHECK_SELECTED_DATA>false</MULTI_THREAD_CHECK_SELECTED_DATA>
+      <UBSAN_ENABLE_DATA>false</UBSAN_ENABLE_DATA>
+      <HWASAN_ENABLE_DATA>false</HWASAN_ENABLE_DATA>
+      <BLACK_COVERAGE_ENABLE_DATA>false</BLACK_COVERAGE_ENABLE_DATA>
+      <HOT_RELOAD_MODULE_NAME>main</HOT_RELOAD_MODULE_NAME>
+      <method v="2">
+        <option name="Build.Hvigor.HotReloadBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PetPlus [assembleHap]" type="HvigorRunConfiguration" factoryName="HvigorRunConfiguration" temporary="true">
+      <option name="applicationParameters" value="--mode module -p product=default assembleHap --analyze=normal --parallel --incremental" />
+      <option name="nodeInterpreter" value="D:/Program Files/Huawei/DevEco Studio\tools\node" />
+      <option name="scriptFile" value="D:/Program Files/Huawei/DevEco Studio\tools\hvigor\bin\hvigorw.js" />
+      <option name="workingDir" value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="PetPlus [main:assembleHap]" type="HvigorRunConfiguration" factoryName="HvigorRunConfiguration" temporary="true">
+      <option name="applicationParameters" value="--mode module -p product=default -p module=main@default assembleHap --analyze=normal --parallel --incremental" />
+      <option name="nodeInterpreter" value="D:/Program Files/Huawei/DevEco Studio\tools\node" />
+      <option name="scriptFile" value="D:/Program Files/Huawei/DevEco Studio\tools\hvigor\bin\hvigorw.js" />
+      <option name="workingDir" value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="OhosDebugTask" factoryName="OpenHarmony App">
+      <MODULE_NAME>main</MODULE_NAME>
+      <REINSTALL_APPLICATION>true</REINSTALL_APPLICATION>
+      <ENVIRONMENT_VARIABLES>[]</ENVIRONMENT_VARIABLES>
+      <DEBUG_LINE_ENABLE_DATA>false</DEBUG_LINE_ENABLE_DATA>
+      <AUTO_DEPENDENCIES_DATA>true</AUTO_DEPENDENCIES_DATA>
+      <WEB_VIEW_DEBUG>false</WEB_VIEW_DEBUG>
+      <INSTALL_FLAGS_CONFIG_KEY />
+      <LAUNCH_FLAGS_CONFIG_KEY />
+      <LAUNCH_ABILITY_CONFIG_TYPE>Default Ability</LAUNCH_ABILITY_CONFIG_TYPE>
+      <LAUNCH_ABILITY_CONFIG_VALUE />
+      <SYMBOL_DIRS>[]</SYMBOL_DIRS>
+      <DEBUGGER_TYPE>Detect Automatically</DEBUGGER_TYPE>
+      <MULTI_HAP_MODULE_DATA>[]</MULTI_HAP_MODULE_DATA>
+      <SHOW_STATIC_VARIABLES>true</SHOW_STATIC_VARIABLES>
+      <LOGGING_TARGET_CHANNELS>lldb process:gdb-remote packets</LOGGING_TARGET_CHANNELS>
+      <USER_POST_ATTACH_COMMANDS>[]</USER_POST_ATTACH_COMMANDS>
+      <USER_STARTUP_COMMANDS>[]</USER_STARTUP_COMMANDS>
+      <ETS_SOURCE_PARIS>[]</ETS_SOURCE_PARIS>
+      <DEPLOY_MULTI_HAP>false</DEPLOY_MULTI_HAP>
+      <ALL_MODULES>false</ALL_MODULES>
+      <ASAN_ENABLE_DATA>false</ASAN_ENABLE_DATA>
+      <TSAN_ENABLE_DATA>false</TSAN_ENABLE_DATA>
+      <ERROR_INFO_ENHANCE_ENABLE_DATA>false</ERROR_INFO_ENHANCE_ENABLE_DATA>
+      <MULTI_THREAD_CHECK_SELECTED_DATA>false</MULTI_THREAD_CHECK_SELECTED_DATA>
+      <UBSAN_ENABLE_DATA>false</UBSAN_ENABLE_DATA>
+      <HWASAN_ENABLE_DATA>false</HWASAN_ENABLE_DATA>
+      <BLACK_COVERAGE_ENABLE_DATA>false</BLACK_COVERAGE_ENABLE_DATA>
+      <method v="2">
+        <option name="Build.Hvigor.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Hvigor.PetPlus [main:assembleHap]" />
+        <item itemvalue="Hvigor.PetPlus [main:assembleHap]" />
+        <item itemvalue="Hvigor.PetPlus [main:assembleHap]" />
+        <item itemvalue="Hvigor.PetPlus [main:assembleHap]" />
+        <item itemvalue="Hvigor.PetPlus [main:assembleHap]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用级" UseSingleDictionary="true" transferred="true" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: 登录界面实现" />
+    <MESSAGE value="feat(api): 添加HTTP客户端和服务API实现&#10;&#10;- 实现通用HTTP客户端request函数，支持类型安全的API调用&#10;- 添加API服务层，包含用户管理、宠物档案、喂养健康等业务接口&#10;- 定义完整的API类型系统，包括请求响应数据结构和错误处理&#10;- 在Index页面集成登录功能，实现用户认证流程&#10;- 新增注册页面register.ets，支持用户账号创建&#10;- 配置API基础URL和相关资源文件更新&#10;- 添加产品需求文档和应用架构图作为项目规划参考" />
+    <MESSAGE value="feat(app): 重构HTTP客户端并添加底部导航栏&#10;&#10;- 将HTTP客户端从原生http模块迁移到axios库，提升网络请求稳定性&#10;- 新增AppPage页面实现底部标签导航功能，支持首页、健康、资产、智库四个模块&#10;- 优化登录页面增加自动登录和防重复点击功能&#10;- 重命名register页面为Register并规范化组件结构&#10;- 新增个人中心页面MyPage实现用户信息展示和退出登录功能&#10;- 添加Dashboard、Health、Asset、Intel四个页面模块基础结构&#10;- 在oh-package.json5中添加mccharts图表依赖包" />
+    <MESSAGE value="feat(api): 添加HTTP客户端和服务接口实现&#10;&#10;- 新增request函数封装Axios请求，支持请求和响应日志记录&#10;- 实现统一的错误处理机制，包含HTTP状态码和业务错误码处理&#10;- 添加详细的请求参数和响应数据类型定义&#10;- 集成LogUtil进行完整的请求链路追踪&#10;- 提供超时控制和错误重试基础架构&#10;- 定义标准化的API服务接口和数据传输对象&#10;- 实现类型安全的API调用方法，支持泛型返回值处理&#10;- 统一API错误处理和日志记录机制&#10;- 添加完整的API文档注释和类型约束&#10;- 迁移原有API服务至新的HTTP客户端架构&#10;- 重构API类型定义，优化数据结构和字段命名规范&#10;- 添加全面的API服务方法，覆盖用户、宠物、健康等业务模块" />
+    <MESSAGE value="refactor(httpClient): 优化 HTTP 客户端代码结构和日志输出&#10;&#10;- 改善代码可读性&#10;- 在错误日志中添加响应数据的 JSON 字符串化输出&#10;- 简化导入语句的格式以提高代码简洁性" />
+    <MESSAGE value="refactor(api): 重构API类型定义&#10;&#10;- 移除多余的空行以优化代码格式&#10;- 将currentweight和healthstatus字段名改为currentWeight和healthStatus&#10;- 添加DelPetsRequest接口定义&#10;- 将isActive字段类型扩展为boolean | string | number&#10;- 重命名AddFeedingDeviceRequest为AddFeedingDevicesRequest&#10;- 添加UpdateFeedingDevicesRequest和DelFeedingDevicesRequest接口&#10;- 添加AddFeedingSchedulesRequest、UpdateFeedingSchedulesRequest和DelFeedingSchedulesRequest接口&#10;- 移除MonitoringBean、FeedingRecordBean和GetFeedingRecordRequest中的多余空行" />
+    <MESSAGE value="feat(api): 完善宠物管理系统API功能&#10;&#10;- 新增查询用户信息接口 queryUser&#10;- 新增添加宠物信息接口 addPets&#10;- 新增删除宠物信息接口 delPets&#10;- 将更新宠物信息接口 updatePets 方法从 POST 改为 GET&#10;- 新增喂食计划管理相关接口：addFeedingSchedules、updateFeedingSchedules、delFeedingSchedules&#10;- 新增设备管理相关接口：getFeedingDevices、addFeedingDevices、updateFeedingDevices、delFeedingDevices&#10;- 新增设备数据获取接口 getDeviceData&#10;- 新增设备命令下发接口 setDeviceCommands&#10;- 新增远程喂食功能接口 putFeeding&#10;- 优化代码结构，添加详细的注释说明&#10;- 扩展请求参数类型定义，支持更多操作类型" />
+    <MESSAGE value="feat(archival): 宠物档案管理系统重构&#10;&#10;- 集成完整的宠物CRUD功能，支持增删改查操作&#10;- 新增智能设备管理模块，实现设备绑定与解绑功能&#10;- 实现自动投喂计划管理，支持定时任务创建与编辑&#10;- 添加手动投喂控制面板，可实时下发喂食指令&#10;- 重构UI界面为模块化设计，采用折叠展开布局&#10;- 实现设备与投喂计划关联，支持多设备管理&#10;- 优化宠物头像上传与本地存储功能&#10;- 添加用户认证集成，支持多用户数据隔离&#10;- 实现响应式网格布局适配不同屏幕尺寸&#10;- 完善错误处理与用户操作反馈提示机制" />
+    <MESSAGE value="feat(knowledge): made knowledge ts file to ets" />
+    <MESSAGE value="docs(user-manual): 添加 PetPlus 宠家用户使用文档&#10;&#10;- 创建完整的用户手册，涵盖应用介绍和功能说明&#10;- 添加下载安装指南和首次启动说明&#10;- 详细描述登录注册流程和注意事项&#10;- 完善首页智能看板功能使用说明&#10;- 提供健康页数据分析和报告分享指导&#10;- 补充管理页宠物档案设备计划管理操作&#10;- 编写智库页知识学习和搜索功能说明&#10;- 添加个人中心资料修改和设置说明&#10;- 整理常见问题解答和典型使用流程示例&#10;- 包含安全隐私建议和版本功能说明" />
+    <MESSAGE value="docs(manual): 更新用户手册添加目录导航和图片样式&#10;&#10;- 添加CSS样式定义用于图片显示和目录容器布局&#10;- 实现可折叠的目录导航功能和交互效果&#10;- 插入多张应用界面截图增强文档可视化&#10;- 添加JavaScript脚本实现目录展开收起功能&#10;- 优化文档结构增加移动端和2合1设备适配&#10;- 补充页面底部闭合标签完善HTML结构" />
+    <MESSAGE value="style(docs): 更新用户手册目录样式&#10;&#10;- 移除自定义CSS样式和JavaScript交互功能&#10;- 替换为HTML5 details/summary元素实现折叠目录&#10;- 简化目录结构和标记语言&#10;- 保持目录完整性和链接功能&#10;- 提升文档加载性能和兼容性" />
+    <MESSAGE value="fix(ui): 修复页面标题显示问题&#10;&#10;- 修正了 Archival.ets 中的文本显示错误&#10;- 将异常字符替换为正确的 &quot;喂食计划&quot; 文本&#10;- 确保编辑和新增状态下的标题正确显示" />
+    <MESSAGE value="feat: 增加演示视频" />
+    <MESSAGE value="feat: 修改文件路径" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 修改文件路径" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>
