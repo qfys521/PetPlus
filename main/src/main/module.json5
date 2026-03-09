@@ -6,7 +6,10 @@
     "mainElement": "MainAbility",
     "deviceTypes": [
       "phone",
-      "2in1"
+      "2in1",
+      "tablet",
+      "tv",
+      "car"
     ],
     "requestPermissions": [
       {
