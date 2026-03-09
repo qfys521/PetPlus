@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="453f41c3-9df1-49d4-bb74-1448dd1899b8" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/AppScope/app.json5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/AppScope/resources/base/element/string.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/AppScope/resources/base/media/background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/AppScope/resources/base/media/foreground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/AppScope/resources/base/media/layered_image.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/build-profile.json5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/code-linter.json5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/docs/.images/.raw/2in1/  (1).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/docs/.images/.raw/2in1/  (2).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/docs/.images/.raw/2in1/  (3).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/docs/.images/.raw/2in1/  (4).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/docs/.images/.raw/2in1/  (5).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/docs/.images/.raw/2in1/  (6).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/docs/.images/.raw/2in1/  (7).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/docs/.images/.raw/2in1/  (8).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/docs/.images/.raw/2in1/  (9).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/docs/.images/.raw/phone/  (1).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/docs/.images/.raw/phone/  (10).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/docs/.images/.raw/phone/  (11).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/docs/.images/.raw/phone/  (12).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/docs/.images/.raw/phone/  (13).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/docs/.images/.raw/phone/  (14).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/docs/.images/.raw/phone/  (2).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/docs/.images/.raw/phone/  (3).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/docs/.images/.raw/phone/  (4).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/docs/.images/.raw/phone/  (5).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/docs/.images/.raw/phone/  (6).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/docs/.images/.raw/phone/  (7).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/docs/.images/.raw/phone/  (8).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/docs/.images/.raw/phone/  (9).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/docs/.images/首页.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/docs/演示文稿.pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/docs/用户手册.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/hvigor/hvigor-config.json5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/hvigorfile.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/build-profile.json5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/hvigorfile.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/obfuscation-rules.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/oh-package-lock.json5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/oh-package.json5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/ets/api/httpClient.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/ets/api/services.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/ets/api/types.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/ets/data/knowledge.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/ets/mainability/MainAbility.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/ets/mainbackupability/MainBackupAbility.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/ets/pages/AppPage.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/ets/pages/Index.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/ets/pages/Register.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/ets/pageview/Archival.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/ets/pageview/Dashboard.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/ets/pageview/DataSource.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/ets/pageview/Health.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/ets/pageview/Intel.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/ets/pageview/MyPage.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/module.json5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/resources/base/element/color.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/resources/base/element/float.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/resources/base/element/string.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/resources/base/media/background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/resources/base/media/bg1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/resources/base/media/bg2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/resources/base/media/foreground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/resources/base/media/img.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/resources/base/media/layered_image.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/resources/base/media/startIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/resources/base/media/touxiang2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/resources/base/profile/backup_config.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/resources/base/profile/main_pages.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/main/resources/dark/element/color.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/mock/mock-config.json5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/ohosTest/ets/test/Ability.test.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/ohosTest/ets/test/List.test.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/ohosTest/module.json5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/test/ApiService.test.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/test/List.test.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/main/src/test/LocalUnit.test.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/oh-package-lock.json5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/oh-package.json5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/prd.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/应用架构.hla" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../源代码/应用架构.svg" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="3AhihalAGLwyPhhKlgMa2LbDZjb" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "127.0.0.1:5555": "5369961651773052725265",
+    "Application.main.executor": "Run",
+    "MODULE_HAP_TIME": "{\"127.0.0.1:5555main\":\"2026-03-09T10:38:44.091574500Z\"}",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "ace.nodejs.version": "18.20.1",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "E:/Code/PetPlus/sources",
+    "projectSizeLastTraceTimestamp-8d6af9d8a0a9b3ba598f029682bcf6d47a2d58346a63ab699c6b56065937": "1773051338947"
+  }
+}]]></component>
+  <component name="RunManager" selected="Application.main">
+    <configuration name="main" type="HotReLoadTask" factoryName="Hot Reload">
+      <MODULE_NAME />
+      <REINSTALL_APPLICATION>true</REINSTALL_APPLICATION>
+      <ENVIRONMENT_VARIABLES>[]</ENVIRONMENT_VARIABLES>
+      <DEBUG_LINE_ENABLE_DATA>false</DEBUG_LINE_ENABLE_DATA>
+      <AUTO_DEPENDENCIES_DATA>true</AUTO_DEPENDENCIES_DATA>
+      <WEB_VIEW_DEBUG>false</WEB_VIEW_DEBUG>
+      <INSTALL_FLAGS_CONFIG_KEY />
+      <LAUNCH_FLAGS_CONFIG_KEY />
+      <LAUNCH_ABILITY_CONFIG_TYPE>Default Ability</LAUNCH_ABILITY_CONFIG_TYPE>
+      <LAUNCH_ABILITY_CONFIG_VALUE />
+      <SYMBOL_DIRS>[]</SYMBOL_DIRS>
+      <DEBUGGER_TYPE>Detect Automatically</DEBUGGER_TYPE>
+      <MULTI_HAP_MODULE_DATA>[]</MULTI_HAP_MODULE_DATA>
+      <SHOW_STATIC_VARIABLES>true</SHOW_STATIC_VARIABLES>
+      <LOGGING_TARGET_CHANNELS>lldb process:gdb-remote packets</LOGGING_TARGET_CHANNELS>
+      <USER_POST_ATTACH_COMMANDS>[]</USER_POST_ATTACH_COMMANDS>
+      <USER_STARTUP_COMMANDS>[]</USER_STARTUP_COMMANDS>
+      <ETS_SOURCE_PARIS>[]</ETS_SOURCE_PARIS>
+      <DEPLOY_MULTI_HAP>false</DEPLOY_MULTI_HAP>
+      <ALL_MODULES>false</ALL_MODULES>
+      <ASAN_ENABLE_DATA>false</ASAN_ENABLE_DATA>
+      <TSAN_ENABLE_DATA>false</TSAN_ENABLE_DATA>
+      <ERROR_INFO_ENHANCE_ENABLE_DATA>false</ERROR_INFO_ENHANCE_ENABLE_DATA>
+      <MULTI_THREAD_CHECK_SELECTED_DATA>false</MULTI_THREAD_CHECK_SELECTED_DATA>
+      <UBSAN_ENABLE_DATA>false</UBSAN_ENABLE_DATA>
+      <HWASAN_ENABLE_DATA>false</HWASAN_ENABLE_DATA>
+      <BLACK_COVERAGE_ENABLE_DATA>false</BLACK_COVERAGE_ENABLE_DATA>
+      <HOT_RELOAD_MODULE_NAME>main</HOT_RELOAD_MODULE_NAME>
+      <method v="2">
+        <option name="Build.Hvigor.HotReloadBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="main" type="OhosDebugTask" factoryName="OpenHarmony App">
+      <MODULE_NAME>main</MODULE_NAME>
+      <REINSTALL_APPLICATION>true</REINSTALL_APPLICATION>
+      <ENVIRONMENT_VARIABLES>[]</ENVIRONMENT_VARIABLES>
+      <DEBUG_LINE_ENABLE_DATA>false</DEBUG_LINE_ENABLE_DATA>
+      <AUTO_DEPENDENCIES_DATA>true</AUTO_DEPENDENCIES_DATA>
+      <WEB_VIEW_DEBUG>false</WEB_VIEW_DEBUG>
+      <INSTALL_FLAGS_CONFIG_KEY />
+      <LAUNCH_FLAGS_CONFIG_KEY />
+      <LAUNCH_ABILITY_CONFIG_TYPE>Default Ability</LAUNCH_ABILITY_CONFIG_TYPE>
+      <LAUNCH_ABILITY_CONFIG_VALUE />
+      <SYMBOL_DIRS>[]</SYMBOL_DIRS>
+      <DEBUGGER_TYPE>Detect Automatically</DEBUGGER_TYPE>
+      <MULTI_HAP_MODULE_DATA>[]</MULTI_HAP_MODULE_DATA>
+      <SHOW_STATIC_VARIABLES>true</SHOW_STATIC_VARIABLES>
+      <LOGGING_TARGET_CHANNELS>lldb process:gdb-remote packets</LOGGING_TARGET_CHANNELS>
+      <USER_POST_ATTACH_COMMANDS>[]</USER_POST_ATTACH_COMMANDS>
+      <USER_STARTUP_COMMANDS>[]</USER_STARTUP_COMMANDS>
+      <ETS_SOURCE_PARIS>[]</ETS_SOURCE_PARIS>
+      <DEPLOY_MULTI_HAP>false</DEPLOY_MULTI_HAP>
+      <ALL_MODULES>false</ALL_MODULES>
+      <ASAN_ENABLE_DATA>false</ASAN_ENABLE_DATA>
+      <TSAN_ENABLE_DATA>false</TSAN_ENABLE_DATA>
+      <ERROR_INFO_ENHANCE_ENABLE_DATA>false</ERROR_INFO_ENHANCE_ENABLE_DATA>
+      <MULTI_THREAD_CHECK_SELECTED_DATA>false</MULTI_THREAD_CHECK_SELECTED_DATA>
+      <UBSAN_ENABLE_DATA>false</UBSAN_ENABLE_DATA>
+      <HWASAN_ENABLE_DATA>false</HWASAN_ENABLE_DATA>
+      <BLACK_COVERAGE_ENABLE_DATA>false</BLACK_COVERAGE_ENABLE_DATA>
+      <method v="2">
+        <option name="Build.Hvigor.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用级" UseSingleDictionary="true" transferred="true" />
+</project>
