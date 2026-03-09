@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21373465-96f4-4634-9dc3-d1db102346d9" name="更改" comment="feat: 修改文件路径" />
+    <list default="true" id="21373465-96f4-4634-9dc3-d1db102346d9" name="更改" comment="feat: 修改文件路径">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/演示文稿（PPT、用户手册、设计文档/用户手册.md" beforeDir="false" afterPath="$PROJECT_DIR$/演示文稿（PPT、用户手册、设计文档/用户手册.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
